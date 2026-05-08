@@ -2,12 +2,13 @@ package com.example.atvdpesquisa_kotlin.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.atvdpesquisa_kotlin.databinding.ItemFilmeBinding
 import com.example.atvdpesquisa_kotlin.model.Filme
 
 class FilmeAdapter(
-    private val lista: List<Filme>
+    private val lista: MutableList<Filme>
 ) : RecyclerView.Adapter<FilmeAdapter.FilmeViewHolder>() {
 
     inner class FilmeViewHolder(
@@ -48,11 +49,35 @@ class FilmeAdapter(
                 android.R.drawable.btn_star_big_off
         )
 
+        // FAVORITAR
         holder.binding.btnFavorito.setOnClickListener {
 
             filme.favorito = !filme.favorito
 
+            Toast.makeText(
+                holder.itemView.context,
+                if (filme.favorito)
+                    "Adicionado aos favoritos"
+                else
+                    "Removido dos favoritos",
+                Toast.LENGTH_SHORT
+            ).show()
+
             notifyItemChanged(position)
+        }
+
+        // EXCLUIR
+        holder.binding.btnExcluir.setOnClickListener {
+
+            lista.removeAt(position)
+
+            notifyItemRemoved(position)
+
+            Toast.makeText(
+                holder.itemView.context,
+                "Filme removido",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

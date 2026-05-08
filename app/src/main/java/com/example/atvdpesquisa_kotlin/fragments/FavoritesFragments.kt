@@ -45,7 +45,7 @@ class FavoritesFragments : Fragment() {
         val favoritos =
             HomeFragment.listaFilmes.filter {
                 it.favorito
-            }
+            }.toMutableList()
 
         adapter = FilmeAdapter(favoritos)
 

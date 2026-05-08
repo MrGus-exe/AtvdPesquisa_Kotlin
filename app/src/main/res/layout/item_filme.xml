@@ -41,6 +41,13 @@
             android:layout_height="48dp"
             android:background="@android:color/transparent"
             android:src="@android:drawable/btn_star_big_off"/>
+
+        <ImageButton
+            android:id="@+id/btnExcluir"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_delete"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
