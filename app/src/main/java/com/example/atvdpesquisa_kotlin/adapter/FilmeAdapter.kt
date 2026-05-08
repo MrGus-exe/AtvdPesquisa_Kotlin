@@ -14,7 +14,10 @@ class FilmeAdapter(
         val binding: ItemFilmeBinding
     ) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmeViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): FilmeViewHolder {
 
         val binding = ItemFilmeBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -25,12 +28,32 @@ class FilmeAdapter(
         return FilmeViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FilmeViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: FilmeViewHolder,
+        position: Int
+    ) {
 
         val filme = lista[position]
 
-        holder.binding.txtTitulo.text = filme.titulo
-        holder.binding.txtAno.text = "${filme.ano} - ${filme.genero}"
+        holder.binding.txtTitulo.text =
+            filme.titulo
+
+        holder.binding.txtAno.text =
+            "${filme.ano} • ${filme.genero}"
+
+        holder.binding.btnFavorito.setImageResource(
+            if (filme.favorito)
+                android.R.drawable.btn_star_big_on
+            else
+                android.R.drawable.btn_star_big_off
+        )
+
+        holder.binding.btnFavorito.setOnClickListener {
+
+            filme.favorito = !filme.favorito
+
+            notifyItemChanged(position)
+        }
     }
 
     override fun getItemCount() = lista.size

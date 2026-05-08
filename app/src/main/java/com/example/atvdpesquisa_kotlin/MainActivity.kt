@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.atvdpesquisa_kotlin.databinding.ActivityMainBinding
-import com.example.atvdpesquisa_kotlin.fragments.FavoritesFragment
 import com.example.atvdpesquisa_kotlin.fragments.HomeFragment
+import com.example.atvdpesquisa_kotlin.fragments.AddMovieFragment
+import com.example.atvdpesquisa_kotlin.fragments.FavoritesFragments
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.home -> replaceFragment(HomeFragment())
 
-                R.id.favorites -> replaceFragment(FavoritesFragment())
+                R.id.favorites -> replaceFragment(FavoritesFragments())
+                R.id.addMovie -> replaceFragment(AddMovieFragment())
             }
 
             true

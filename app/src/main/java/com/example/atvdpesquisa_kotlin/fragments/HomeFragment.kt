@@ -13,7 +13,16 @@ import com.example.atvdpesquisa_kotlin.model.Filme
 
 class HomeFragment : Fragment() {
 
+    companion object {
+
+        val listaFilmes = mutableListOf(
+            Filme("Interestelar", 2014, "Ficção"),
+            Filme("Batman", 2022, "Ação")
+        )
+    }
+
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var adapter: FilmeAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,20 +38,20 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val listaFilmes = listOf(
-
-            Filme("Interestelar", 2014, "Ficção"),
-            Filme("Batman", 2022, "Ação"),
-            Filme("Corra", 2017, "Terror")
-        )
+        adapter = FilmeAdapter(listaFilmes)
 
         binding.recyclerFilmes.layoutManager =
             LinearLayoutManager(requireContext())
 
-        binding.recyclerFilmes.adapter =
-            FilmeAdapter(listaFilmes)
+        binding.recyclerFilmes.adapter = adapter
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        adapter.notifyDataSetChanged()
     }
 
     override fun onDestroy() {
